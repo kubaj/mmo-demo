@@ -1,0 +1,18 @@
+name: mmo-demo
+plugins: []
+prefix: github.com/kubaj/mmo-demo
+services:
+  auth:
+    description: ""
+    plugins:
+    - flowup/mmo-gen-go-grpc:1.0.2
+    - flowup/mmo-gen-grpc-gateway:1.0.1
+  core:
+    description: Used for shared models
+    plugins:
+    - flowup/mmo-gen-go-grpc:1.0.2
+  order:
+    description: ""
+    plugins: 
+    - flowup/mmo-gen-go-grpc:1.0.2
+    - flowup/mmo-gen-grpc-gateway:1.0.1

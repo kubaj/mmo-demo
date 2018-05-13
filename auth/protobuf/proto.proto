@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package auth;
+option go_package = "github.com/kubaj/mmo-demo/auth";
+
+import "google/protobuf/empty.proto";
+import "core/protobuf/proto.proto";
+import "google/api/annotations.proto";
+
+service AuthService {
+    rpc GetVersion (google.protobuf.Empty) returns (Version) {
+        option (google.api.http) = {
+            get: "/auth/version"
+        };
+    }
+    rpc Check(core.HealthCheckRequest) returns (core.HealthCheckResponse);
+    rpc IsUserLogged(Token) returns (UserStatusResponse) {};
+}
+
+message Token {
+    string token = 1;
+}
+
+message UserStatusResponse {
+    bool logged = 1;
+}
+
+message Version {
+    string name = 1;
+}

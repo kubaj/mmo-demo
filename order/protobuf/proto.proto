@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package order;
+option go_package = "github.com/kubaj/mmo-demo/order";
+
+import "google/protobuf/empty.proto";
+import "core/protobuf/proto.proto";
+import "google/api/annotations.proto";
+
+service OrderService {
+    rpc GetVersion (google.protobuf.Empty) returns (Version) { 
+        option (google.api.http) = {
+            get: "/order/version"
+        };
+    };
+    rpc PlaceOrder (OrderRequest) returns (OrderResponse) { 
+        option (google.api.http) = {
+            post: "/order/new"
+            body: "*"
+        };
+    };
+    rpc Check(core.HealthCheckRequest) returns (core.HealthCheckResponse) {};
+}
+
+message OrderRequest {
+    string token = 1;
+    repeated string products = 2;
+}
+
+message OrderResponse {
+    bool successful = 1;
+}
+
+message Version {
+    string name = 1;
+}
