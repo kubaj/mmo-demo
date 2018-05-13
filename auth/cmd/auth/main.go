@@ -27,7 +27,7 @@ func main() {
 
 	viper.SetDefault("db.conn", "host=db-svc user=goo dbname=goo sslmode=disable password=goo")
 	viper.SetDefault("server.binds.grpc", ":50051")
-	viper.SetDefault("server.binds.gw", ":80")
+	viper.SetDefault("server.binds.gw", ":50080")
 
 	lis, err := net.Listen("tcp", viper.GetString("server.binds.grpc"))
 	if err != nil {
